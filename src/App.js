@@ -60,6 +60,8 @@ class App extends Component {
   toggleConfirmationAt = index =>
     this.toggleGuestPropertyAt("isConfirmed", index);
 
+  toggleEditingAt = index => this.toggleGuestPropertyAt("isEditing", index);
+
   handleChange = e => {
     console.log(e);
   };
@@ -88,6 +90,7 @@ class App extends Component {
           <GuestsContainer
             guests={this.state.guests}
             toggleConfirmationAt={this.toggleConfirmationAt}
+            toggleEditingAt={this.toggleEditingAt}
           />
         </div>
       </div>

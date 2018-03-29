@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GuestName from "./GuestName";
 
 class GuestTile extends Component {
   render() {
@@ -6,7 +7,10 @@ class GuestTile extends Component {
 
     return (
       <li className={this.props.data.isConfirmed ? "responded" : null}>
-        <span>{this.props.data.name}</span>
+        <GuestName
+          name={this.props.data.name}
+          isEditing={this.props.data.isEditing}
+        />
         <label>
           <input
             type="checkbox"
@@ -15,7 +19,7 @@ class GuestTile extends Component {
           />{" "}
           Confirmed
         </label>
-        <button>edit</button>
+        <button onClick={this.props.handleEdit}>edit</button>
         <button>remove</button>
       </li>
     );

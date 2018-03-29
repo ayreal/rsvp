@@ -15,6 +15,7 @@ class GuestsContainer extends Component {
             data={guest}
             key={index}
             handleConfirmation={() => this.props.toggleConfirmationAt(index)}
+            handleEdit={() => this.props.toggleEditingAt(index)}
           />
         ))}
       </ul>
