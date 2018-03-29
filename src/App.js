@@ -57,6 +57,20 @@ class App extends Component {
     });
   };
 
+  setNameAt = (name, index) => {
+    this.setState({
+      guests: this.state.guests.map((guest, ind) => {
+        if (index === ind) {
+          return {
+            ...guest,
+            name: name
+          };
+        }
+        return guest;
+      })
+    });
+  };
+
   toggleConfirmationAt = index =>
     this.toggleGuestPropertyAt("isConfirmed", index);
 
@@ -91,6 +105,7 @@ class App extends Component {
             guests={this.state.guests}
             toggleConfirmationAt={this.toggleConfirmationAt}
             toggleEditingAt={this.toggleEditingAt}
+            setNameAt={this.setNameAt}
           />
         </div>
       </div>

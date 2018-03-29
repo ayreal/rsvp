@@ -10,6 +10,7 @@ class GuestTile extends Component {
         <GuestName
           name={this.props.data.name}
           isEditing={this.props.data.isEditing}
+          handleNameEdit={e => props.setName(e.target.value)}
         />
         <label>
           <input
