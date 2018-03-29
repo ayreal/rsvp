@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 
 const GuestList = props => {
   return (
-    <table class="counter">
+    <table className="counter">
       <tbody>
         <tr>
           <td>Attending:</td>

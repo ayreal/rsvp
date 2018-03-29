@@ -8,7 +8,12 @@ class GuestTile extends Component {
       <li className={this.props.data.isConfirmed ? "responded" : null}>
         <span>{this.props.data.name}</span>
         <label>
-          <input type="checkbox" checked /> Confirmed
+          <input
+            type="checkbox"
+            checked={this.props.data.isConfirmed}
+            onChange={this.props.handleConfirmation}
+          />{" "}
+          Confirmed
         </label>
         <button>edit</button>
         <button>remove</button>

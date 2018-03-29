@@ -39,12 +39,14 @@ class App extends Component {
   getTotalUnconfirmed = () => this.getTotalInvited() - this.getTotalConfirmed();
 
   toggleConfirmationAt = index => {
+    // debugger;
     this.setState({
       guests: this.state.guests.map((guest, ind) => {
+        const conf = !guest.isConfirmed;
         if (index === ind) {
           return {
             ...guest,
-            isConfirmed: !isConfirmed
+            isConfirmed: conf
           };
         }
         return guest;
@@ -58,7 +60,7 @@ class App extends Component {
 
   render() {
     return (
-      <div class="App">
+      <div className="App">
         <header>
           <h1>RSVP</h1>
           <GuestForm
@@ -66,7 +68,7 @@ class App extends Component {
             onChange={this.handleChange}
           />
         </header>
-        <div class="main">
+        <div className="main">
           <div>
             <h2>Invitees</h2>
             <ToggleResponded />
