@@ -5,8 +5,8 @@ class GuestTile extends Component {
     console.log("%c >> Rendering GuestTile \n", "color: #bada55");
 
     return (
-      <li class="responded">
-        <span>Iver</span>
+      <li className={this.props.data.isConfirmed ? "responded" : null}>
+        <span>{this.props.data.name}</span>
         <label>
           <input type="checkbox" checked /> Confirmed
         </label>

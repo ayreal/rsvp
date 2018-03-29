@@ -8,7 +8,17 @@ class GuestsContainer extends Component {
     const { guests } = this.props;
     // console.log("%c >> guests is: \n", "color: #bada55", guests);
 
-    return <ul>{guests.forEach(guest => <GuestTile />)}</ul>;
+    return (
+      <ul>
+        {guests.map((guest, index) => (
+          <GuestTile
+            data={guest}
+            key={index}
+            handleConfirmation={() => this.props.toggleConfirmationAt(index)}
+          />
+        ))}
+      </ul>
+    );
   }
 }
 
