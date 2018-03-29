@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GuestForm from "./components/GuestForm";
 import GuestsContainer from "./components/GuestsContainer";
 import GuestList from "./components/GuestList";
+import ToggleResponded from "./components/ToggleResponded";
 
 class App extends Component {
   state = {
@@ -17,6 +18,10 @@ class App extends Component {
       {
         name: "Kira",
         isConfirmed: true
+      },
+      {
+        name: "Francis",
+        isConfirmed: false
       }
     ],
     currentGuest: ""
@@ -50,9 +55,7 @@ class App extends Component {
         <div class="main">
           <div>
             <h2>Invitees</h2>
-            <label>
-              <input type="checkbox" /> Hide those who haven't responded
-            </label>
+            <ToggleResponded />
           </div>
           <GuestList
             guests={this.state.guests}

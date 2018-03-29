@@ -6,15 +6,15 @@ const GuestList = props => {
       <tbody>
         <tr>
           <td>Attending:</td>
-          <td>2</td>
+          <td>{props.getTotalConfirmed()}</td>
         </tr>
         <tr>
           <td>Unconfirmed:</td>
-          <td>1</td>
+          <td>{props.getTotalUnconfirmed()}</td>
         </tr>
         <tr>
           <td>Total:</td>
-          <td>3</td>
+          <td>{props.getTotalInvited()}</td>
         </tr>
       </tbody>
     </table>
