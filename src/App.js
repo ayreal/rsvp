@@ -1,19 +1,51 @@
 import React, { Component } from "react";
+import GuestForm from "./components/GuestForm";
+import GuestsContainer from "./components/GuestsContainer";
+import GuestList from "./components/GuestList";
 
 class App extends Component {
-  render() {
-    console.log("%c >> Inside render App \n", "color: #bada55");
+  state = {
+    guests: [
+      {
+        name: "Ariel",
+        isConfirmed: true
+      },
+      {
+        name: "Vitor",
+        isConfirmed: false
+      },
+      {
+        name: "Kira",
+        isConfirmed: true
+      }
+    ],
+    currentGuest: ""
+  };
 
+  // componentDidMount() {
+  //   debugger;
+  // }
+
+  getTotalInvited = () => this.state.guests.length;
+
+  getTotalConfirmed = () =>
+    this.state.guests.filter(guest => guest.isConfirmed).length;
+
+  getTotalUnconfirmed = () => this.getTotalInvited() - this.getTotalConfirmed();
+
+  handleChange = e => {
+    console.log(e);
+  };
+
+  render() {
     return (
       <div class="App">
         <header>
           <h1>RSVP</h1>
-          <form>
-            <input type="text" value="Safia" placeholder="Invite Someone" />
-            <button type="submit" name="submit" value="submit">
-              Submit
-            </button>
-          </form>
+          <GuestForm
+            props={this.state.currentGuest}
+            onChange={this.handleChange}
+          />
         </header>
         <div class="main">
           <div>
@@ -22,51 +54,13 @@ class App extends Component {
               <input type="checkbox" /> Hide those who haven't responded
             </label>
           </div>
-          <table class="counter">
-            <tbody>
-              <tr>
-                <td>Attending:</td>
-                <td>2</td>
-              </tr>
-              <tr>
-                <td>Unconfirmed:</td>
-                <td>1</td>
-              </tr>
-              <tr>
-                <td>Total:</td>
-                <td>3</td>
-              </tr>
-            </tbody>
-          </table>
-          <ul>
-            <li class="pending">
-              <span>Safia</span>
-            </li>
-            <li class="responded">
-              <span>Iver</span>
-              <label>
-                <input type="checkbox" checked /> Confirmed
-              </label>
-              <button>edit</button>
-              <button>remove</button>
-            </li>
-            <li class="responded">
-              <span>Corrina</span>
-              <label>
-                <input type="checkbox" checked /> Confirmed
-              </label>
-              <button>edit</button>
-              <button>remove</button>
-            </li>
-            <li>
-              <span>Joel</span>
-              <label>
-                <input type="checkbox" /> Confirmed
-              </label>
-              <button>edit</button>
-              <button>remove</button>
-            </li>
-          </ul>
+          <GuestList
+            guests={this.state.guests}
+            getTotalInvited={this.getTotalInvited}
+            getTotalConfirmed={this.getTotalConfirmed}
+            getTotalUnconfirmed={this.getTotalUnconfirmed}
+          />
+          <GuestsContainer guests={this.state.guests} />
         </div>
       </div>
     );
