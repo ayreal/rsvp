@@ -21,7 +21,7 @@ class GuestTile extends Component {
           Confirmed
         </label>
         <button onClick={this.props.handleEdit}>edit</button>
-        <button>remove</button>
+        <button onClick={this.props.handleRemove}>remove</button>
       </li>
     );
   }

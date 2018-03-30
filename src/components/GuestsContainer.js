@@ -20,6 +20,7 @@ class GuestsContainer extends Component {
               handleConfirmation={() => this.props.toggleConfirmationAt(index)}
               handleEdit={() => this.props.toggleEditingAt(index)}
               setName={text => this.props.setNameAt(text, index)}
+              handleRemove={() => this.props.removeGuestAt(index)}
             />
           ))}
       </ul>
