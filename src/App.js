@@ -7,7 +7,7 @@ import ToggleResponded from "./components/ToggleResponded";
 class App extends Component {
   state = {
     isFiltered: false,
-    currentGuest: "Test",
+    currentGuest: "",
     guests: [
       {
         name: "Ariel",
@@ -84,6 +84,16 @@ class App extends Component {
     });
   };
 
+  createNewGuest = e => {
+    e.preventDefault();
+    this.setState({
+      guests: [
+        { name: this.state.currentGuest, isConfirmed: false },
+        ...this.state.guests
+      ]
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -92,6 +102,7 @@ class App extends Component {
           <GuestForm
             name={this.state.currentGuest}
             handleChange={this.setCurrentGuest}
+            handleSubmit={this.createNewGuest}
           />
         </header>
         <div className="main">

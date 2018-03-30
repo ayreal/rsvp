@@ -2,7 +2,7 @@ import React from "react";
 
 const GuestForm = props => {
   return (
-    <form>
+    <form onSubmit={props.handleSubmit}>
       <input
         type="text"
         value={props.name}
