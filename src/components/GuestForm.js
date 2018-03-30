@@ -1,18 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 
-class GuestForm extends Component {
-  render() {
-    console.log("%c >> Rendering GuestForm \n", "color: #bada55");
-
-    return (
-      <form>
-        <input type="text" value="Safia" placeholder="Invite Someone" />
-        <button type="submit" name="submit" value="submit">
-          Submit
-        </button>
-      </form>
-    );
-  }
-}
+const GuestForm = props => {
+  return (
+    <form>
+      <input
+        type="text"
+        value={props.name}
+        placeholder="Invite Someone"
+        onChange={e => props.handleChange(e.target.value)}
+      />
+      <button type="submit" name="submit" value="submit">
+        Submit
+      </button>
+    </form>
+  );
+};
 
 export default GuestForm;

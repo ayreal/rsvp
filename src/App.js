@@ -7,6 +7,7 @@ import ToggleResponded from "./components/ToggleResponded";
 class App extends Component {
   state = {
     isFiltered: false,
+    currentGuest: "Test",
     guests: [
       {
         name: "Ariel",
@@ -23,8 +24,7 @@ class App extends Component {
         isConfirmed: true,
         isEditing: false
       }
-    ],
-    currentGuest: ""
+    ]
   };
 
   // componentDidMount() {
@@ -78,8 +78,10 @@ class App extends Component {
     });
   };
 
-  setCurrentGuest = e => {
-    console.log(e);
+  setCurrentGuest = name => {
+    this.setState({
+      currentGuest: name
+    });
   };
 
   render() {
@@ -88,8 +90,8 @@ class App extends Component {
         <header>
           <h1>RSVP</h1>
           <GuestForm
-            props={this.state.currentGuest}
-            onChange={this.handleChange}
+            name={this.state.currentGuest}
+            handleChange={this.setCurrentGuest}
           />
         </header>
         <div className="main">
