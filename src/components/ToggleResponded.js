@@ -1,13 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 
-class ToggleResponded extends Component {
-  render() {
-    return (
-      <label>
-        <input type="checkbox" /> Hide those who haven't responded
-      </label>
-    );
-  }
-}
+const ToggleResponded = props => {
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={props.isFiltered}
+        onChange={props.handleToggle}
+      />{" "}
+      Hide those who haven't responded
+    </label>
+  );
+};
 
 export default ToggleResponded;

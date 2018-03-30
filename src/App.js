@@ -6,6 +6,7 @@ import ToggleResponded from "./components/ToggleResponded";
 
 class App extends Component {
   state = {
+    isFiltered: false,
     guests: [
       {
         name: "Ariel",
@@ -21,11 +22,6 @@ class App extends Component {
         name: "Kira",
         isConfirmed: true,
         isEditing: false
-      },
-      {
-        name: "Francis",
-        isConfirmed: false,
-        isEditing: true
       }
     ],
     currentGuest: ""
@@ -76,7 +72,13 @@ class App extends Component {
 
   toggleEditingAt = index => this.toggleGuestPropertyAt("isEditing", index);
 
-  handleChange = e => {
+  toggleFilter = () => {
+    this.setState({
+      isFiltered: !this.state.isFiltered
+    });
+  };
+
+  setCurrentGuest = e => {
     console.log(e);
   };
 
@@ -93,7 +95,10 @@ class App extends Component {
         <div className="main">
           <div>
             <h2>Invitees</h2>
-            <ToggleResponded />
+            <ToggleResponded
+              isFiltered={this.state.isFiltered}
+              handleToggle={this.toggleFilter}
+            />
           </div>
           <GuestList
             guests={this.state.guests}
@@ -106,6 +111,7 @@ class App extends Component {
             toggleConfirmationAt={this.toggleConfirmationAt}
             toggleEditingAt={this.toggleEditingAt}
             setNameAt={this.setNameAt}
+            isFiltered={this.state.isFiltered}
           />
         </div>
       </div>

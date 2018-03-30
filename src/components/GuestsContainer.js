@@ -10,15 +10,18 @@ class GuestsContainer extends Component {
 
     return (
       <ul>
-        {guests.map((guest, index) => (
-          <GuestTile
-            data={guest}
-            key={index}
-            handleConfirmation={() => this.props.toggleConfirmationAt(index)}
-            handleEdit={() => this.props.toggleEditingAt(index)}
-            setName={text => this.props.setNameAt(text, index)}
-          />
-        ))}
+        {guests
+          // either return true for every guest (not filtered) OR return true for guest.isConfirmed (filtered) otherwise
+          .filter(guest => !this.props.isFiltered || guest.isConfirmed)
+          .map((guest, index) => (
+            <GuestTile
+              data={guest}
+              key={index}
+              handleConfirmation={() => this.props.toggleConfirmationAt(index)}
+              handleEdit={() => this.props.toggleEditingAt(index)}
+              setName={text => this.props.setNameAt(text, index)}
+            />
+          ))}
       </ul>
     );
   }
