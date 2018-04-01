@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import GuestForm from "./components/GuestForm";
-import GuestsContainer from "./components/GuestsContainer";
-import GuestList from "./components/GuestList";
-import ToggleResponded from "./components/ToggleResponded";
+import Header from "./components/Header";
+import Main from "./components/Main";
 
 class App extends Component {
   state = {
-    isFiltered: false,
     currentGuest: "",
     guests: [
       {
@@ -30,13 +27,6 @@ class App extends Component {
   // componentDidMount() {
   //   debugger;
   // }
-
-  getTotalInvited = () => this.state.guests.length;
-
-  getTotalConfirmed = () =>
-    this.state.guests.filter(guest => guest.isConfirmed).length;
-
-  getTotalUnconfirmed = () => this.getTotalInvited() - this.getTotalConfirmed();
 
   toggleGuestPropertyAt = (property, index) => {
     // debugger;
@@ -67,14 +57,12 @@ class App extends Component {
     });
   };
 
-  toggleConfirmationAt = index =>
-    this.toggleGuestPropertyAt("isConfirmed", index);
-
-  toggleEditingAt = index => this.toggleGuestPropertyAt("isEditing", index);
-
-  toggleFilter = () => {
+  removeGuestAt = index => {
     this.setState({
-      isFiltered: !this.state.isFiltered
+      guests: [
+        ...this.state.guests.slice(0, index),
+        ...this.state.guests.slice(index + 1)
+      ]
     });
   };
 
@@ -97,50 +85,22 @@ class App extends Component {
     });
   };
 
-  removeGuestAt = index => {
-    this.setState({
-      guests: [
-        ...this.state.guests.slice(0, index),
-        ...this.state.guests.slice(index + 1)
-      ]
-    });
-  };
-
   render() {
     return (
       <div className="App">
-        <header>
-          <h1>RSVP</h1>
-          <GuestForm
-            name={this.state.currentGuest}
-            handleChange={this.setCurrentGuest}
-            handleSubmit={this.createNewGuest}
-          />
-        </header>
-        <div className="main">
-          <div>
-            <h2>Invitees</h2>
-            <ToggleResponded
-              isFiltered={this.state.isFiltered}
-              handleToggle={this.toggleFilter}
-            />
-          </div>
-          <GuestList
-            guests={this.state.guests}
-            getTotalInvited={this.getTotalInvited}
-            getTotalConfirmed={this.getTotalConfirmed}
-            getTotalUnconfirmed={this.getTotalUnconfirmed}
-          />
-          <GuestsContainer
-            guests={this.state.guests}
-            toggleConfirmationAt={this.toggleConfirmationAt}
-            toggleEditingAt={this.toggleEditingAt}
-            setNameAt={this.setNameAt}
-            isFiltered={this.state.isFiltered}
-            removeGuestAt={this.removeGuestAt}
-            currentGuest={this.state.currentGuest}
-          />
-        </div>
+        <Header
+          name={this.state.currentGuest}
+          handleChange={this.setCurrentGuest}
+          handleSubmit={this.createNewGuest}
+        />
+
+        <Main
+          guests={this.state.guests}
+          currentGuest={this.state.currentGuest}
+          setNameAt={this.setNameAt}
+          removeGuestAt={this.removeGuestAt}
+          toggleGuestPropertyAt={this.toggleGuestPropertyAt}
+        />
       </div>
     );
   }
