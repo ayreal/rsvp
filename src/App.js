@@ -92,6 +92,9 @@ class App extends Component {
         ...this.state.guests
       ]
     });
+    this.setState({
+      currentGuest: ""
+    });
   };
 
   removeGuestAt = index => {
@@ -135,6 +138,7 @@ class App extends Component {
             setNameAt={this.setNameAt}
             isFiltered={this.state.isFiltered}
             removeGuestAt={this.removeGuestAt}
+            currentGuest={this.state.currentGuest}
           />
         </div>
       </div>

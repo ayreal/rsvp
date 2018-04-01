@@ -1,11 +1,14 @@
 import React from "react";
 
 const GhostTile = props => {
-  return (
-    <li className="pending">
-      <span>hi</span>
-    </li>
-  );
+  if (props.name) {
+    return (
+      <li className="pending">
+        <span>{props.name}</span>
+      </li>
+    );
+  }
+  return null;
 };
 
 export default GhostTile;
